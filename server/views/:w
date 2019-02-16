@@ -1,0 +1,16 @@
+
+<div class="container">
+
+
+<p class="row justify-content-center" id="chooseLevel">Choose your level!</p>
+<div class="row justify-content-center">
+    <button id="easy" class="level">Easy</button>
+    <button id="medium" class="level">Medium</button>
+    <button id="hard" class="level">Hard</button>
+</div>
+<div class="row justify-content-center">
+    <span id="randomNumber" class="randomNumber"></span>
+</div>
+<div class="row justify-content-center"><button id="generateNext">Enter</button></div>
+
+<script src="javascripts/index.js"></script>

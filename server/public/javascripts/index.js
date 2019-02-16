@@ -20,6 +20,18 @@ function main() {
     easy(j); 
 }
 
+function getWords(length) {
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhr.open("GET", "/data/words", true);
+  xhr.send();
+}
+
 function easy(n) {
     document.querySelector("#randomNumber").innerHTML = "Press [spacebar] to start";
     document.getElementById("generateNext").addEventListener("click", function(e) {

@@ -11,7 +11,5 @@ function main() {
 
 }
 
-function randomNumbers() {
-    }
     //let random =Math.floor(Math.random() * (+max - +min)) + +min; 
     //document.querySelector("#RandomNumber").innerHTML = Math.floor(Math.random() * (+max - +min)) + +min;

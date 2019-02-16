@@ -1,3 +1,9 @@
 #randomNumber {
     font-size: 3em;
 }
+
+#logo {
+    color: white;
+    font-size: 2em;
+    position: absolute;
+}

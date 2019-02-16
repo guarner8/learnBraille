@@ -1,28 +1,6 @@
-<!doctype html>
 
-<html lang="en">
-<head>
-  <meta charset="utf-8">
+<h1 id="randomNumber"></h1>
+<button id="generateRand">Try it</button>
 
-  <title></title>
-
-</head>
-
-<body>
-
-	<div>
-		<h1 id="RandomNumber"></h1>
-		<button onclick="getRand()">Try it</button>
-	</div>
-
-  <script>
-  	var min=0; 
-    var max=10;  
-    function getRand() {
-    	var random =Math.floor(Math.random() * (+max - +min)) + +min; 
-    	document.querySelector("#RandomNumber").innerHTML = Math.floor(Math.random() * (+max - +min)) + +min;
-    }
-
-  </script>
-</body>
-</html>
+<script src="javascripts/index.js"></script>
+		

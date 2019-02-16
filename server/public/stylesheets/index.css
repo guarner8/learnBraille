@@ -1,3 +1,19 @@
 #randomNumber {
     font-size: 3em;
 }
+
+#logo {
+    color: white;
+    position: absolute;
+    font-size: 2em;
+}
+
+#move-nav {
+    float: right !important;
+}
+
+@media only screen and (max-width: 770px) {
+  #logo {
+    position: relative;
+  }
+}

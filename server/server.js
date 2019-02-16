@@ -4,11 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var aboutRouter = require('./routes/about');
-var playRouter = require('./routes/play');
 
 var app = express();
+
+var mainRouter = require('./router_manager');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,16 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/about', aboutRouter);
-app.use('/play', playRouter);
+app.use('/', mainRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
-
-// error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
@@ -39,6 +30,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
 
 app.listen(3000);
 console.log("listening on port 3000");

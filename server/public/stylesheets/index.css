@@ -1,3 +1,10 @@
+#result {
+    font-size: 5em;
+    margin-left: 50px;
+    margin-top: 30px;
+    color: red;
+}
+
 .randomNumber {
     font-size: 3em;
 }
@@ -46,5 +53,8 @@
 @media only screen and (max-width: 770px) {
   #logo {
     position: relative;
+  }
+  #explore {
+    font-size: 2em;
   }
 }

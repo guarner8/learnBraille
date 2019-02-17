@@ -1,10 +1,16 @@
 document.addEventListener("DOMContentLoaded", main);
 var words=[];
 var idx = 0;
+var currListener;
 
 function main() {
     for (let i = 0; i < 4; i++) {
-        document.querySelectorAll(".level")[i].addEventListener("click", function(e) {
+        
+        currListener = document.querySelectorAll(".level")[i].addEventListener("click", function(e) {
+            idx = 0;
+            var old_element = document.getElementById("generateNext");
+            var new_element = old_element.cloneNode(true);
+            old_element.parentNode.replaceChild(new_element, old_element);
             if (this.id === "easy") {
                 let n = 0;
                 easy(n);
@@ -50,14 +56,15 @@ function semicolon(e) {
 
         letter = getLetter();
         text = document.getElementById("randomNumber").textContent;
+        console.log(letter, text, text.charAt(idx), text.length, idx);
         if (text == "Press [;] to start") {
             playSuperCorrect();
             clear();
             document.getElementById("generateNext").click();
         }
 
-        console.log(letter, text.charAt(idx), text.length, idx);
-        if (letter === text.charAt(idx)) {
+        
+        else if (letter === text.charAt(idx)) {
 
             if (idx >= text.length-1) {
                 playSuperCorrect();
@@ -184,7 +191,7 @@ function getWords(length) {
             words = JSON.parse(this.responseText).words;
             let text = document.querySelector("#randomNumber"); 
             text.innerHTML = words.pop().toUpperCase();
-            setTimeout(() => {tts(text.innerHTML);},500);
+            setTimeout(() => {tts(text.innerHTML);},300);
         } else {
             console.log(this.err);
         }
@@ -195,7 +202,7 @@ function getWords(length) {
     } else {
         let text = document.querySelector("#randomNumber"); 
         text.innerHTML = words.pop().toUpperCase();
-        setTimeout(() => {tts(text.innerHTML);},500);
+        setTimeout(() => {tts(text.innerHTML);},300);
     }
 }
 
@@ -242,7 +249,8 @@ function hard() {
 
 function endless(j) {
     clear();
-    document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
+    
+    document.querySelector("#randomNumber").innerHTML  = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function (event) {
         getWords(j);
         event.stopPropagation();

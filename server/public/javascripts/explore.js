@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", main);
+var timeOut;
+
 
 function main() {
    for (let i = 0; i < 6; i++) {
@@ -27,6 +29,8 @@ function dealWithKeyboard(e) {
     if (e.keyCode === 65) {
         document.getElementById("clear").click();
     } else {
+        playTap();
+        clearTimeout(timeOut);
         document.getElementById(e.keyCode).classList.toggle("inactive");
         getLetter();
     }
@@ -39,6 +43,21 @@ function tts(word) {
         var msg = new SpeechSynthesisUtterance(word);
         window.speechSynthesis.speak(msg);
     }
+}
+
+function playCorrect() {
+    var audio = new Audio('../audio/correct.mp3');
+    audio.play();
+}
+
+function playTap() {
+    var audio = new Audio('../audio/tap.mp3');
+    audio.play();
+}
+
+function playError() {
+    var audio = new Audio('../audio/error.mp3');
+    audio.play();
 }
 
 function brailleToASCII(arr) {
@@ -99,7 +118,8 @@ function getLetter() {
     } else {
     document.getElementById("result").innerHTML = letter;
     }
-    tts(letter);
+
+    timeOut = setTimeout(function() {tts(letter);}, 1000);
     return letter;
 }
 

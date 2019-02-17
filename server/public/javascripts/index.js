@@ -50,6 +50,15 @@ function dealWithKeyboard(e) {
     }
 }
 
+function tts(word) {
+    if (typeof(word)!=typeof("")) {
+        return;
+    } else {
+        var msg = new SpeechSynthesisUtterance(word);
+        window.speechSynthesis.speak(msg);
+    }
+}
+
 function getWords(length) {
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -57,6 +66,7 @@ function getWords(length) {
             words = JSON.parse(this.responseText).words;
             let text = document.querySelector("#randomNumber"); 
             text.innerHTML = words.pop().toUpperCase();
+            tts(text.innerHTML);
         } else {
             console.log(this.err);
         }
@@ -67,6 +77,7 @@ function getWords(length) {
     } else {
         let text = document.querySelector("#randomNumber"); 
         text.innerHTML = words.pop().toUpperCase();
+        tts(text.innerHTML);
     }
 }
 

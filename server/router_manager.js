@@ -10,7 +10,7 @@ var indexRouter = require('./routes/index');
 var aboutRouter = require('./routes/about');
 var exploreRouter = require('./routes/explore');
 var learnRouter = require('./routes/learn');
-var wordsRouter = require('./routes/words');
+var dataRouter = require('./routes/data');
 
 // error handler
 
@@ -19,7 +19,7 @@ router.use('/', indexRouter);
 router.use('/about', aboutRouter);
 router.use('/explore', exploreRouter);
 router.use('/learn', learnRouter);
-router.use('/data/words', learnRouter);
+router.use('/data', dataRouter);
 
 // catch 404 and forward to error handler
 

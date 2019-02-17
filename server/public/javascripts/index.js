@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", main);
 var words=[];
-
+var idx = 0;
 
 function main() {
     for (let i = 0; i < 4; i++) {
@@ -44,9 +44,34 @@ function clear() {
 
 function dealWithKeyboard(e) {
     //ENTER KEYCODE IS 13
+    if (e.keyCode == 13) {}
+    else if (e.keyCode === 186 ) {
+        letter = getLetter();
+        text = document.getElementById("randomNumber").textContent;
+        if (text == "Press [;] to start") {
+            clear();
+            document.getElementById("generateNext").click();
+        }
 
-    if (e.keyCode === 186) {
-        document.getElementById("generateNext").click();
+        //console.log(letter, text.charAt(idx), text.length, idx);
+        if (letter === text.charAt(idx)) {
+            
+            
+
+            if (idx >= text.length-1) {
+                playSuperCorrect();
+                document.getElementById("generateNext").click();
+                idx=0;
+            } else {
+                playCorrect();
+                ele = document.getElementById("randomNumber");
+                ele.innerHTML = '<span style="color:#7df442;">' + text.substring(0,idx+1) + '</span>'+text.substring(idx+1,text.length);
+                idx++;
+            }
+        } else {
+            playError();
+        }
+                clear();
     } else if (e.keyCode === 65) {
         document.getElementById("clear").click();
     } else {
@@ -93,7 +118,6 @@ function createBitMap() {
     const fifth = isActive(75);
     const sixth = isActive(74);
 
-    //console.log( first+ fourth + second+ fifth+ third+ sixth);
     return first+  second+ third +sixth + fifth+ fourth;
 }
 
@@ -107,8 +131,13 @@ function isActive(id) {
 function getLetter() {
     let letterMap = brailleToASCII();
     let letter = letterMap[createBitMap()];
-    document.getElementById("result").innerHTML = letter;
+    console.log(createBitMap());
     return letter;
+}
+
+function playSuperCorrect() {
+    var audio = new Audio('../audio/superCorrect.mp3');
+    audio.play();
 }
 
 function playCorrect() {
@@ -142,7 +171,7 @@ function getWords(length) {
             words = JSON.parse(this.responseText).words;
             let text = document.querySelector("#randomNumber"); 
             text.innerHTML = words.pop().toUpperCase();
-            tts(text.innerHTML);
+            setTimeout(() => {tts(text.innerHTML);},500);
         } else {
             console.log(this.err);
         }
@@ -153,7 +182,7 @@ function getWords(length) {
     } else {
         let text = document.querySelector("#randomNumber"); 
         text.innerHTML = words.pop().toUpperCase();
-        tts(text.innerHTML);
+        setTimeout(() => {tts(text.innerHTML);},500);
     }
 }
 

@@ -158,6 +158,7 @@ function getWords(length) {
 }
 
 function easy(n) {
+    clear();
     document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function(e) {
         text = document.querySelector("#randomNumber")
@@ -170,6 +171,7 @@ function easy(n) {
 }
 
 function medium() {
+    clear();
     document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function (event) {
         let rand = Math.floor(Math.random()*26) + 65;
@@ -181,6 +183,7 @@ function medium() {
 }
 
 function hard() {
+    clear();
     document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function (event) {
 
@@ -195,6 +198,7 @@ function hard() {
 }
 
 function endless(j) {
+    clear();
     document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function (event) {
         getWords(j);

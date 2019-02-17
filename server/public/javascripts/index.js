@@ -16,8 +16,36 @@ function main() {
             }
         });
     }
+    for (let i = 0; i < 6; i++) {
+        document.querySelectorAll(".braille")[i].addEventListener("click", function(e) {
+            this.classList.toggle("inactive");
+        });
+    }
+
+    document.querySelector("#clear").addEventListener("click", function(e) {
+        clear();
+    });
+
+    window.addEventListener("keydown", dealWithKeyboard, true);
+
     let j = 0;
     easy(j); 
+}
+
+function clear() {
+    for (let i = 0; i < 6; i++) {
+        document.querySelectorAll(".braille")[i].classList.add("inactive");
+    }
+}
+
+function dealWithKeyboard(e) {
+    if (e.keyCode === 186) {
+        document.getElementById("generateNext").click();
+    } else if (e.keyCode === 65) {
+        document.getElementById("clear").click();
+    } else {
+        document.getElementById(e.keyCode).classList.toggle("inactive");
+    }
 }
 
 function getWords(length) {
@@ -33,7 +61,7 @@ function getWords(length) {
 }
 
 function easy(n) {
-    document.querySelector("#randomNumber").innerHTML = "Press [spacebar] to start";
+    document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function(e) {
         document.querySelector("#randomNumber").innerHTML = String.fromCharCode(n+65);
         if (n < 25) {n++} else {n = 0}
@@ -41,7 +69,7 @@ function easy(n) {
 }
 
 function medium() {
-    document.querySelector("#randomNumber").innerHTML = "Press [spacebar] to start";
+    document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function (event) {
         let rand = Math.floor(Math.random()*26) + 65;
         document.querySelector("#randomNumber").innerHTML = String.fromCharCode(rand);
@@ -49,7 +77,7 @@ function medium() {
 }
 
 function hard() {
-    document.querySelector("#randomNumber").innerHTML = "Press [spacebar] to start";
+    document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function (event) {
 
         let rand = Math.floor(Math.random()*26) + 65;
@@ -61,7 +89,7 @@ function hard() {
 }
 
 function endless(j) {
-    document.querySelector("#randomNumber").innerHTML = "Press [spacebar] to start";
+    document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function (event) {
 
         let rand = Math.floor(Math.random()*26) + 65;

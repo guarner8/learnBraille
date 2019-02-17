@@ -20,11 +20,13 @@ function main() {
     }
     for (let i = 0; i < 6; i++) {
         document.querySelectorAll(".braille")[i].addEventListener("click", function(e) {
+            playTap();
             this.classList.toggle("inactive");
         });
     }
 
     document.querySelector("#clear").addEventListener("click", function(e) {
+        playTap();
         clear();
     });
 

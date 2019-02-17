@@ -41,6 +41,7 @@ function clear() {
 }
 
 function dealWithKeyboard(e) {
+    //ENTER KEYCODE IS 13
     if (e.keyCode === 186) {
         document.getElementById("generateNext").click();
     } else if (e.keyCode === 65) {
@@ -51,32 +52,59 @@ function dealWithKeyboard(e) {
 }
 
 function brailleToASCII(arr) {
-    return {[1,0,0,0,0,0]:"A",
-            [1,1,0,0,0,0]:"B",
-            [1,0,0,0,0,1]:"C",
-            [1,0,0,0,1,1]:"D",
-            [1,0,0,0,1,0]:"E",
-            [1,1,0,0,0,1]:"F",
-            [1,1,0,0,1,1]:"G",
-            [1,1,0,0,1,0]:"H",
-            [0,1,0,0,0,1]:"I",
-            [0,1,0,0,1,1]:"J",
-            [1,0,1,0,0,0]:"K",
-            [1,1,1,0,0,0]:"L",
-            [1,0,1,0,0,1]:"M",
-            [1,0,1,0,1,1]:"N",
-            [1,0,1,0,1,0]:"O",
-            [1,1,1,0,0,1]:"P",
-            [1,1,1,0,1,1]:"Q",
-            [1,1,1,0,1,0]:"R",
-            [0,1,1,0,0,1]:"S",
-            [0,1,1,0,1,1]:"T",
-            [1,0,1,1,0,0]:"U",
-            [1,1,1,1,0,0]:"V",
-            [0,1,0,1,1,1]:"W",
-            [1,0,1,1,0,1]:"X",
-            [1,0,1,1,1,1]:"Y",
-            [1,0,1,1,1,0]:"Z"};
+    return {"100000":"A",
+            "110000":"B",
+            "100001":"C",
+            "100011":"D",
+            "100010":"E",
+            "110001":"F",
+            "110011":"G",
+            "110010":"H",
+            "010001":"I",
+            "010011":"J",
+            "101000":"K",
+            "111000":"L",
+            "101001":"M",
+            "101011":"N",
+            "101010":"O",
+            "111001":"P",
+            "111011":"Q",
+            "111010":"R",
+            "011001":"S",
+            "011011":"T",
+            "101100":"U",
+            "111100":"V",
+            "010111":"W",
+            "101101":"X",
+            "101111":"Y",
+            "101110":"Z",
+            "000000":null}
+}
+
+function createBitMap() {
+    const first = isActive(83);
+    const second = isActive(68);
+    const third = isActive(70);
+    const fourth = isActive(76);
+    const fifth = isActive(75);
+    const sixth = isActive(74);
+
+    //console.log( first+ fourth + second+ fifth+ third+ sixth);
+    return first+  second+ third +sixth + fifth+ fourth;
+}
+
+function isActive(id) {
+    if (document.getElementById(""+id).classList.contains("inactive")) {
+        return "0";
+    }
+    return "1";
+}
+
+function getLetter() {
+    let letterMap = brailleToASCII();
+    let letter = letterMap[createBitMap()];
+    document.getElementById("result").innerHTML = letter;
+    return letter;
 }
 
 function tts(word) {
@@ -118,7 +146,7 @@ function easy(n) {
         if (n < 25) {n++} else {n = 0}
 
 
-        event.stopPropagation();
+            event.stopPropagation();
     });
 }
 

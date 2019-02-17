@@ -12,8 +12,10 @@ function main() {
 function keyboard(e) {
 	if (e.keyCode === 37) {
 		idx = (idx===0) ? 0 : idx -1;
+		window.location.pathname = tabs[idx];
 	} else if (e.keyCode === 39) {
 		idx = (idx===2) ? 2 : idx+1;
+		window.location.pathname = tabs[idx];
 	}
-	window.location.pathname = tabs[idx];
+	
 }

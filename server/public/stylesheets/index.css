@@ -1,3 +1,10 @@
+img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding: 10px;
+}
+
 #result {
     font-size: 5em;
     margin-left: 50px;

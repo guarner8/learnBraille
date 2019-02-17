@@ -44,7 +44,7 @@ router.get('/words', function(req, res, next) {
 		}
 		return false;
 	});
-  	res.json({"words":words});
+  	res.json({"words":shuffle(words)});
 });
 
 

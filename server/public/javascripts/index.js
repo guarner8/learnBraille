@@ -32,6 +32,8 @@ function main() {
 
     window.addEventListener("keydown", dealWithKeyboard, true);
 
+    window.addEventListener("keyup", semicolon, true);
+
     let j = 0;
     easy(j); 
 }
@@ -42,12 +44,16 @@ function clear() {
     }
 }
 
+<<<<<<< Updated upstream
 function dealWithKeyboard(e) {
     //ENTER KEYCODE IS 13
     if (e.keyCode == 13) { 
     
     }
     else if (e.keyCode === 186 ) {
+=======
+function semicolon(e) {
+    if (e.keyCode === 186 ) {
         letter = getLetter();
         text = document.getElementById("randomNumber").textContent;
         if (text == "Press [;] to start") {
@@ -56,58 +62,72 @@ function dealWithKeyboard(e) {
             document.getElementById("generateNext").click();
         }
 
-        //console.log(letter, text.charAt(idx), text.length, idx);
+        console.log(letter, text.charAt(idx), text.length, idx);
         if (letter === text.charAt(idx)) {
+
+
             if (idx >= text.length-1) {
                 playSuperCorrect();
                 document.getElementById("generateNext").click();
                 idx=0;
             } else {
                 playCorrect();
-                ele = document.getElementById("randomNumber");
+                let ele = document.getElementById("randomNumber");
                 ele.innerHTML = '<span style="color:#7df442;">' + text.substring(0,idx+1) + '</span>'+text.substring(idx+1,text.length);
                 idx++;
             }
         } else {
-            playError();
+            setTimeout(()=>{playError();},200);
         }
-                clear();
+        clear();
+    }
+}
+
+function dealWithKeyboard(e) {
+    //ENTER KEYCODE IS 13
+    if (e.keyCode == 13) {
+
     } else if (e.keyCode === 65) {
         document.getElementById("clear").click();
     } else {
-        playTap();
-        document.getElementById(e.keyCode).classList.toggle("inactive");
+        let ele = document.getElementById(e.keyCode)
+        if (ele!==null) {
+            playTap();
+            ele.classList.toggle("inactive");
+        }
+        
+        
     }
 }
 
 function brailleToASCII(arr) {
     return {"100000":"A",
-            "110000":"B",
-            "100001":"C",
-            "100011":"D",
-            "100010":"E",
-            "110001":"F",
-            "110011":"G",
-            "110010":"H",
-            "010001":"I",
-            "010011":"J",
-            "101000":"K",
-            "111000":"L",
-            "101001":"M",
-            "101011":"N",
-            "101010":"O",
-            "111001":"P",
-            "111011":"Q",
-            "111010":"R",
-            "011001":"S",
-            "011011":"T",
-            "101100":"U",
-            "111100":"V",
-            "010111":"W",
-            "101101":"X",
-            "101111":"Y",
-            "101110":"Z",
-            "000000":null}
+    "110000":"B",
+    "100001":"C",
+    "100011":"D",
+    "100010":"E",
+    "110001":"F",
+    "110011":"G",
+    "110010":"H",
+    "010001":"I",
+    "010011":"J",
+    "101000":"K",
+    "111000":"L",
+    "101001":"M",
+    "101011":"N",
+    "101010":"O",
+    "111001":"P",
+    "111011":"Q",
+    "111010":"R",
+    "011001":"S",
+    "011011":"T",
+    "101100":"U",
+    "111100":"V",
+    "010111":"W",
+    "101101":"X",
+    "101111":"Y",
+    "101110":"Z",
+    "000000":null}
 }
 
 function createBitMap() {
@@ -160,7 +180,7 @@ function tts(word) {
         return;
     } else {
         var msg = new SpeechSynthesisUtterance(word);
-        window.speechSynthesis.speak(msg);
+        setTimeout(()=>{window.speechSynthesis.speak(msg);},500);
     }
 }
 
@@ -192,6 +212,7 @@ function easy(n) {
     document.getElementById("generateNext").addEventListener("click", function(e) {
         text = document.querySelector("#randomNumber")
         text.innerHTML = String.fromCharCode(n+65);
+        tts(text.innerHTML)
         if (n < 25) {n++} else {n = 0}
 
 
@@ -206,7 +227,7 @@ function medium() {
         let rand = Math.floor(Math.random()*26) + 65;
         text = document.querySelector("#randomNumber")
         text.innerHTML = String.fromCharCode(rand);
-
+        tts(text.innerHTML)
         event.stopPropagation();
     });
 }
@@ -221,7 +242,7 @@ function hard() {
         let rand2 = Math.floor(Math.random()*26) + 65;
         let text = document.querySelector("#randomNumber"); 
         text.innerHTML = String.fromCharCode(rand).concat(String.fromCharCode(rand1)).concat(String.fromCharCode(rand2));
-
+        tts(text.innerHTML)
         event.stopPropagation();
     });
 }

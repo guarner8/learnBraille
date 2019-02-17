@@ -44,20 +44,20 @@ function clear() {
 
 function dealWithKeyboard(e) {
     //ENTER KEYCODE IS 13
-    if (e.keyCode == 13) {}
+    if (e.keyCode == 13) { 
+    
+    }
     else if (e.keyCode === 186 ) {
         letter = getLetter();
         text = document.getElementById("randomNumber").textContent;
         if (text == "Press [;] to start") {
+            playSuperCorrect();
             clear();
             document.getElementById("generateNext").click();
         }
 
         //console.log(letter, text.charAt(idx), text.length, idx);
         if (letter === text.charAt(idx)) {
-            
-            
-
             if (idx >= text.length-1) {
                 playSuperCorrect();
                 document.getElementById("generateNext").click();

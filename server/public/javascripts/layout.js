@@ -4,7 +4,6 @@ var idx = 0;
 var tabs = ['/', '/learn','/explore'];
 
 function main() {
-	console.log(window.location.pathname);
 	idx = tabs.indexOf(window.location.pathname);
 	document.addEventListener("keydown",keyboard, false);
 }

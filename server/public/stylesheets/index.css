@@ -2,7 +2,12 @@
     font-size: 5em;
     margin-left: 50px;
     margin-top: 30px;
+    padding: 20px;
     color: red;
+    border-color: black;
+    border-style: solid;
+    width: 100px;
+    height: 100px;
 }
 
 .randomNumber {

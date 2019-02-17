@@ -4,6 +4,7 @@ function main() {
    for (let i = 0; i < 6; i++) {
         document.querySelectorAll(".braille")[i].addEventListener("click", function(e) {
             this.classList.toggle("inactive");
+            getLetter();
         });
     }
 
@@ -19,6 +20,7 @@ function clear() {
     for (let i = 0; i < 6; i++) {
         document.querySelectorAll(".braille")[i].classList.add("inactive");
     }
+    document.querySelector("#result").innerHTML = "";
 }
 
 function dealWithKeyboard(e) {
@@ -91,7 +93,12 @@ function isActive(id) {
 function getLetter() {
     let letterMap = brailleToASCII();
     let letter = letterMap[createBitMap()];
+    console.log("letter");
+    if (letter === undefined) {
+        document.getElementById("result").innerHTML = "";
+    } else {
     document.getElementById("result").innerHTML = letter;
+    }
     tts(letter);
     return letter;
 }

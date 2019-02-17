@@ -4,6 +4,7 @@ var idx = 0;
 var currListener;
 
 function main() {
+
     for (let i = 0; i < 4; i++) {
         
         currListener = document.querySelectorAll(".level")[i].addEventListener("click", function(e) {
@@ -60,6 +61,7 @@ function semicolon(e) {
         if (text == "Press [;] to start") {
             playSuperCorrect();
             clear();
+            idx = 0;
             document.getElementById("generateNext").click();
         }
 

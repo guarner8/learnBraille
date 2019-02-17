@@ -50,6 +50,35 @@ function dealWithKeyboard(e) {
     }
 }
 
+function brailleToASCII(arr) {
+    return {[1,0,0,0,0,0]:"A",
+            [1,1,0,0,0,0]:"B",
+            [1,0,0,0,0,1]:"C",
+            [1,0,0,0,1,1]:"D",
+            [1,0,0,0,1,0]:"E",
+            [1,1,0,0,0,1]:"F",
+            [1,1,0,0,1,1]:"G",
+            [1,1,0,0,1,0]:"H",
+            [0,1,0,0,0,1]:"I",
+            [0,1,0,0,1,1]:"J",
+            [1,0,1,0,0,0]:"K",
+            [1,1,1,0,0,0]:"L",
+            [1,0,1,0,0,1]:"M",
+            [1,0,1,0,1,1]:"N",
+            [1,0,1,0,1,0]:"O",
+            [1,1,1,0,0,1]:"P",
+            [1,1,1,0,1,1]:"Q",
+            [1,1,1,0,1,0]:"R",
+            [0,1,1,0,0,1]:"S",
+            [0,1,1,0,1,1]:"T",
+            [1,0,1,1,0,0]:"U",
+            [1,1,1,1,0,0]:"V",
+            [0,1,0,1,1,1]:"W",
+            [1,0,1,1,0,1]:"X",
+            [1,0,1,1,1,1]:"Y",
+            [1,0,1,1,1,0]:"Z"};
+}
+
 function tts(word) {
     if (typeof(word)!=typeof("")) {
         return;
@@ -84,8 +113,12 @@ function getWords(length) {
 function easy(n) {
     document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function(e) {
-        document.querySelector("#randomNumber").innerHTML = String.fromCharCode(n+65);
+        text = document.querySelector("#randomNumber")
+        text.innerHTML = String.fromCharCode(n+65);
         if (n < 25) {n++} else {n = 0}
+
+
+        event.stopPropagation();
     });
 }
 
@@ -93,7 +126,10 @@ function medium() {
     document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function (event) {
         let rand = Math.floor(Math.random()*26) + 65;
-        document.querySelector("#randomNumber").innerHTML = String.fromCharCode(rand);
+        text = document.querySelector("#randomNumber")
+        text.innerHTML = String.fromCharCode(rand);
+
+        event.stopPropagation();
     });
 }
 
@@ -106,14 +142,18 @@ function hard() {
         let rand2 = Math.floor(Math.random()*26) + 65;
         let text = document.querySelector("#randomNumber"); 
         text.innerHTML = String.fromCharCode(rand).concat(String.fromCharCode(rand1)).concat(String.fromCharCode(rand2));
+
+        event.stopPropagation();
     });
 }
 
 function endless(j) {
     document.querySelector("#randomNumber").innerHTML = "Press [;] to start";
     document.getElementById("generateNext").addEventListener("click", function (event) {
-        getWords(j)
+        getWords(j);
+        event.stopPropagation();
     });
+
 
     j++;
 }

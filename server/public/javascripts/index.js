@@ -42,11 +42,13 @@ function clear() {
 
 function dealWithKeyboard(e) {
     //ENTER KEYCODE IS 13
+
     if (e.keyCode === 186) {
         document.getElementById("generateNext").click();
     } else if (e.keyCode === 65) {
         document.getElementById("clear").click();
     } else {
+        playTap();
         document.getElementById(e.keyCode).classList.toggle("inactive");
     }
 }
@@ -105,6 +107,21 @@ function getLetter() {
     let letter = letterMap[createBitMap()];
     document.getElementById("result").innerHTML = letter;
     return letter;
+}
+
+function playCorrect() {
+    var audio = new Audio('../audio/correct.mp3');
+    audio.play();
+}
+
+function playTap() {
+    var audio = new Audio('../audio/tap.mp3');
+    audio.play();
+}
+
+function playError() {
+    var audio = new Audio('../audio/error.mp3');
+    audio.play();
 }
 
 function tts(word) {
